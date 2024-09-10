@@ -1,112 +1,122 @@
-# React homework template
+# Image Search Application
 
-Цей проект був створений за допомогою
-[Create React App](https://github.com/facebook/create-react-app). Для знайомства
-і налаштування додаткових можливостей
-[звернися до документації](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🛠 Tools used
 
-## Створення репозиторію за шаблоном
+[![My Skills](https://skillicons.dev/icons?i=html,css,js,react,npm,webpack,vscode)](https://skillicons.dev)
 
-Використовуй цей репозиторій організації GoIT як шаблон для створення репозиторію
-свого проєкта. Для цього натисни на кнопку `«Use this template»` і вибери опцію
-`«Create a new repository»`, як показано на зображенні.
+This project is an image search application built with React, leveraging the Pixabay API to fetch and display images based on user queries. The application includes several key components that work together to provide a seamless user experience.
 
-![Creating repo from a template step 1](./assets/template-step-1.png)
+## Components Overview
 
-На наступному кроці відкриється сторінка створення нового репозиторію. Заповни поле
-його імені, переконайся що репозиторій публічний, після чого натисни кнопку
-`«Create repository from template»`.
+- **`<Searchbar>`**: This component allows users to input search queries. When the user submits the form, the input value is passed to the parent component via the `onSubmit` prop. It includes a search button and a text input field.
 
-![Creating repo from a template step 2](./assets/template-step-2.png)
+- **`<ImageGallery>`**: Displays a list of image cards in a gallery format. Each image is rendered using the `<ImageGalleryItem>` component.
 
-Після того як репозиторій буде створено, необхідно перейти в налаштування
-створеного репозиторію на вкладку `Settings` > `Actions` > `General` як
-показано на зображенні.
+- **`<ImageGalleryItem>`**: A single image card component that renders each image in the gallery. It creates a simple list item containing an image.
 
-![Settings GitHub Actions permissions step 1](./assets/gh-actions-perm-1.png)
+- **`<Button>`**: A "Load more" button that, when clicked, loads the next set of images from the API and appends them to the existing list. The button only appears when there are images loaded; it remains hidden if the image list is empty.
 
-Проскроливши сторінку до самого кінця, у секції `«Workflow permissions»` вибери
-опцію `«Read and write permissions»` і постав галочку в чекбоксі. Це
-необхідно для автоматизації процесу деплою проєкту.
+- **`<Loader>`**: Displays a spinner while images are being fetched from the API. This component can utilize any existing spinner library, such as `react-loader-spinner`, or another similar option.
 
-![Settings GitHub Actions permissions step 2](./assets/gh-actions-perm-2.png)
+- **`<Modal>`**: Opens a modal window with a dark overlay when an image card is clicked. The modal displays the large version of the image. The modal can be closed by pressing the ESC key or by clicking outside the image.
 
-Тепер у тебе є особистий репозиторій проекту, зі структурою файлів і папок
-репозиторію-шаблону. Далі працюй із ним як із будь-яким іншим особистим репозиторієм,
-клонуй його собі на комп'ютер, пиши код, роби комміти і відправляй їх на
-GitHub.
+## Pixabay API Integration
 
-## Підготовка до роботи
+The application integrates with the Pixabay API to retrieve images. To use the API, you need to register for an API key, which is then used to make HTTP requests.
 
-1. Переконайся що на комп'ютері встановлено LTS-версія Node.js.
-   [Завантаж і встанови](https://nodejs.org/en/) її якщо необхідно.
-2. Встанови базові залежності проєкту командою `npm install`.
-3. Запусти режим розробки, виконавши команду `npm start`.
-4. Перейди в браузері за адресою [http://localhost:3000](http://localhost:3000).
-   Ця сторінка буде автоматично перезавантажуватися після збереження змін у файлах проєкту.
+### Example Request URL
 
-## Деплой
+- **Pagination**: The API supports pagination through the `page` parameter, which defaults to `1`. Each response contains 12 images as specified by the `per_page` parameter.
+- **Search Reset**: For each new search, remember to reset the `page` parameter to `1` to start from the first set of results.
+- **Response Properties**: The API returns an array of image objects. Relevant properties include:
+  - `id`: A unique identifier for each image.
+  - `webformatURL`: A link to the small version of the image, suitable for the gallery view.
+  - `largeImageURL`: A link to the large version of the image, displayed in the modal.
 
-Продакшн версія проєкту буде автоматично проходити лінтинг, збиратися і
-деплоїтися на GitHub Pages, у гілку `gh-pages`, щоразу, коли оновлюється
-гілка `main`. Наприклад, після прямого пушу або прийнятого пул-реквесту. Для цього
-необхідно у файлі `package.json` відредагувати поле `homepage`, замінивши
-`your_username` і `your_repo_name` на свої, і відправити зміни на GitHub.
+## Task:
 
-```json
-"homepage": "https://your_username.github.io/your_repo_name/"
+**Create the `<Searchbar>`, `<ImageGallery>`, `<ImageGalleryItem>`, `<Loader>`, `<Button>`, and `<Modal>` components. The prepared styles for these components can be found in the `styles.css` file and adapted to your own needs.**
+
+**Instructions for using the Pixabay API:**
+For HTTP requests, you will use the public Pixabay image search service. Sign up and obtain a private access key.
+
+**HTTP request URL:**
+
+```
+https://pixabay.com/api/?q=cat&page=1&key=your_key&image_type=photo&orientation=horizontal&per_page=12
 ```
 
-Далі необхідно зайти в налаштування GitHub-репозиторію (`Settings` > `Pages`) і
-виставити роздачу продакшн-версії файлів із папки `/root` гілки `gh-pages`, якщо
-це не було зроблено автоматично.
+The Pixabay API supports pagination, and the `page` parameter defaults to `1`. Each response displays 12 items, as set by the `per_page` parameter. Remember that for every new search by a different key, you need to reset the `page` value to `1`.
 
-![GitHub Pages settings](./assets/repo-settings.png)
+The API response includes an array of objects, and the relevant information consists of the following properties:
 
-### Статус деплоя
+- **id**: Unique identifier
+- **webformatURL**: Link to the small image for the card list
+- **largeImageURL**: Link to the large image for the modal window
 
-Статус деплою крайнього коміту відображається іконкою біля його ідентифікатора.
+### `<Searchbar>` Component Description
 
-- **Жовтий колір** - виконується збірка і деплой проєкту.
-- **Зелений колір** - деплой завершився успішно.
-- **Червоний колір** - під час лінтингу, сборки або деплою сталася помилка.
+The component receives a single prop, `onSubmit`—a function to pass the input value at the time of submission.
 
-Детальнішу інформацію про статус можна подивитися, клікнувши на іконку, і
-у вікні, що випадає, перейти за посиланням `Details`.
+The component generates a DOM element with the following structure:
 
-![Deployment status](./assets/deploy-status.png)
-
-### Жива сторінка
-
-Через якийсь час, зазвичай кілька хвилин, живу сторінку можна буде подивитися
-за адресою, вказаною у відредагованій властивості `homepage`. Наприклад, ось
-посилання на живу версію для цього репозиторію
-[https://goitacademy.github.io/react-homework-template](https://goitacademy.github.io/react-homework-template).
-
-Якщо відкривається порожня сторінка, переконайся, що у вкладці `Console` немає помилок
-пов'язаних із неправильними шляхами до CSS і JS файлів проєкту (**404**). Швидше 
-за все у тебе неправильне значення властивості `homepage` у файлі `package.json`.
-
-### Маршрутизація
-
-Якщо додаток використовує бібліотеку `react-router-dom` для маршрутизації,
-необхідно додатково налаштувати компонент `<BrowserRouter>`, передавши у пропе
-`basename` точну назву твого репозиторію. Слеш на початку рядка обов'язковий.
-
-```jsx
-<BrowserRouter basename="/your_repo_name">
-  <App />
-</BrowserRouter>
+```html
+<header class="searchbar">
+  <form class="form">
+    <button type="submit" class="button">
+      <span class="button-label">Search</span>
+    </button>
+    <input
+      class="input"
+      type="text"
+      autocomplete="off"
+      autofocus
+      placeholder="Search images and photos"
+    />
+  </form>
+</header>
 ```
 
-## Як це працює
+### `<ImageGallery>` Component Description
 
-![How it works](./assets/how-it-works.png)
+A list of image cards. Creates a DOM element with the following structure:
 
-1. Після кожного пушу в гілку `main` GitHub-репозиторія, запускається спеціальний
-   скрипт (GitHub Action) з файла `.github/workflows/deploy.yml`.
-2. Усі файли репозиторію копіюються на сервер, де проект ініціалізується і
-   проходить лінтинг і збірку перед деплоєм.
-3. Якщо всі кроки пройшли успішно, зібрана продакшн-версія файлів проєкту
-   відправляється в гілку `gh-pages`. В іншому випадку, в лозі виконання
-   скрипта буде вказано в чому проблема.
+```html
+<ul class="gallery">
+  <!-- A set of <li> tags with images -->
+</ul>
+```
+
+### `<ImageGalleryItem>` Component Description
+
+A component containing an image from the list. Creates a DOM element with the following structure:
+
+```html
+<li class="gallery-item">
+  <img src="" alt="" />
+</li>
+```
+
+### `<Button>` Component Description
+
+On clicking the "Load more" button, the next batch of images should be loaded and displayed alongside the existing ones. The button should only be displayed when there are images loaded. If the image list is empty, the button should not be displayed.
+
+### `<Loader>` Component Description
+
+The spinner component is displayed while images are being loaded. Use any prepared component, for example, `react-loader-spinner` or any similar option.
+
+### `<Modal>` Component Description
+
+Clicking on an item in the gallery should open a modal window with a dark overlay and display the large version of the image. The modal window should close when the ESC key is pressed or when clicking on the dark overlay.
+
+The appearance of the modal should resemble the functionality of the VanillaJS plugin, except that instead of a white modal window, it will display the image (click the "Run" button in the example).
+
+There is no need to implement animations!
+
+```html
+<div class="overlay">
+  <div class="modal">
+    <img src="" alt="" />
+  </div>
+</div>
+```

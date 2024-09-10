@@ -1,0 +1,13 @@
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Lățimea containerului */
+    height: 100vh; /* Înălțimea containerului poate fi ajustată în funcție de necesități */
+    position: fixed; /* Pentru a poziționa loader-ul peste conținut */
+    top: 0;
+    left: 0;
+    z-index: 9999; /* Pentru a fi deasupra celorlalte elemente */
+    background-color: rgba(0, 0, 0, 0.8); /* Dacă vrei un fundal semi-transparent */
+  }
+  
