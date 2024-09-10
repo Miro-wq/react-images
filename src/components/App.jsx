@@ -33,11 +33,14 @@ const App = () => {
       setIsLoading(true);
       try {
             const fetchImages = await getImages(query, page);
-            const uniqueNewImages = fetchImages.filter(
-              newImage => !images.some(image => image.id === newImage.id)
-              );
+         
 
-              setImages(prevImages => [...prevImages, ...uniqueNewImages]);
+              setImages(prevImages => {
+                const uniqueNewImages = fetchImages.filter(
+                  newImage => !prevImages.some(image => image.id === newImage.id)
+                  );
+                  return [...prevImages, ...uniqueNewImages];
+              });
             } catch (error) {
               console.error('Error fetching images:', error);
             } finally {
