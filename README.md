@@ -1,4 +1,4 @@
-# Image Search Application
+# Image Search Application part 2, using React hooks.
 
 ## 🛠 Tools used
 
