@@ -1,13 +1,9 @@
-# ✨ Image Search Application, code refactoring using React hooks. ✨
+# Image Search Application, code refactoring using React hooks. 
 
-## 🛠 Tools used
-
-[![My Skills](https://skillicons.dev/icons?i=html,css,js,react,npm,webpack,vscode)](https://skillicons.dev)
-
-![Description](https://img.shields.io/badge/Description-purple?style=for-the-badge)
+## Description 
 > This project is an image search application built with React, leveraging the Pixabay API to fetch and display images based on user queries. The application includes several key components that work together to provide a seamless user experience.
 
-![Components Overview](https://img.shields.io/badge/Components%20Overview-purple?style=for-the-badge)
+## Components Overview 
 - **`<Searchbar>`**: This component allows users to input search queries. When the user submits the form, the input value is passed to the parent component via the `onSubmit` prop. It includes a search button and a text input field.
 - **`<ImageGallery>`**: Displays a list of image cards in a gallery format. Each image is rendered using the `<ImageGalleryItem>` component.
 - **`<ImageGalleryItem>`**: A single image card component that renders each image in the gallery. It creates a simple list item containing an image.
@@ -15,8 +11,7 @@
 - **`<Loader>`**: Displays a spinner while images are being fetched from the API. This component can utilize any existing spinner library, such as `react-loader-spinner`, or another similar option.
 - **`<Modal>`**: Opens a modal window with a dark overlay when an image card is clicked. The modal displays the large version of the image. The modal can be closed by pressing the ESC key or by clicking outside the image.
 
-![Pixabay API Integration](https://img.shields.io/badge/Pixabay%20API%20Integration-purple?style=for-the-badge)
-
+## Pixabay API Integration 
 The application integrates with the Pixabay API to retrieve images. To use the API, you need to register for an API key, which is then used to make HTTP requests.
 
 ### Example Request URL
@@ -27,7 +22,7 @@ The application integrates with the Pixabay API to retrieve images. To use the A
 >  - `webformatURL`: A link to the small version of the image, suitable for the gallery view.
 >  - `largeImageURL`: A link to the large version of the image, displayed in the modal.
 
-![Task:](https://img.shields.io/badge/Task:-purple?style=for-the-badge)
+## Task: 
 
 Create the `<Searchbar>`, `<ImageGallery>`, `<ImageGalleryItem>`, `<Loader>`, `<Button>`, and `<Modal>` components. The prepared styles for these components can be found in the `styles.css` file and adapted to your own needs.
 
@@ -49,7 +44,7 @@ The API response includes an array of objects, and the relevant information cons
 - **webformatURL**: Link to the small image for the card list
 - **largeImageURL**: Link to the large image for the modal window
 
-![<Searchbar> Component Description](https://img.shields.io/badge/<Searchbar>-Component%20Description-purple?style=for-the-badge)
+## `<Searchbar>` Component Description
 
 The component receives a single prop, `onSubmit`—a function to pass the input value at the time of submission.
 
@@ -72,7 +67,7 @@ The component generates a DOM element with the following structure:
 </header>
 ```
 
-![<ImageGallery> Component Description](https://img.shields.io/badge/<ImageGallery>-Component%20Description-purple?style=for-the-badge)
+## `<ImageGallery>` Component Description 
 
 
 A list of image cards. Creates a DOM element with the following structure:
@@ -83,7 +78,7 @@ A list of image cards. Creates a DOM element with the following structure:
 </ul>
 ```
 
-![<ImageGalleryItem> Component Description](https://img.shields.io/badge/<ImageGalleryItem>-Component%20Description-purple?style=for-the-badge)
+## `<ImageGalleryItem>` Component Description 
 
 
 A component containing an image from the list. Creates a DOM element with the following structure:
@@ -94,15 +89,15 @@ A component containing an image from the list. Creates a DOM element with the fo
 </li>
 ```
 
-![<Button> Component Description](https://img.shields.io/badge/<Button>-Component%20Description-purple?style=for-the-badge)
+## `<Button>` Component Description 
 
 On clicking the "Load more" button, the next batch of images should be loaded and displayed alongside the existing ones. The button should only be displayed when there are images loaded. If the image list is empty, the button should not be displayed.
 
-![<Loader> Component Description](https://img.shields.io/badge/<Loader>-Component%20Description-purple?style=for-the-badge)
+## `<Loader>` Component Description 
 
 The spinner component is displayed while images are being loaded. Use any prepared component, for example, `react-loader-spinner` or any similar option.
 
-![<Modal> Component Description](https://img.shields.io/badge/<Modal>-Component%20Description-purple?style=for-the-badge)
+## `<Modal>` Component Description 
 
 Clicking on an item in the gallery should open a modal window with a dark overlay and display the large version of the image. The modal window should close when the ESC key is pressed or when clicking on the dark overlay.
 
